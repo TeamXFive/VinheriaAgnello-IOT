@@ -4,6 +4,8 @@ Projeto acadêmico desenvolvido para a **FIAP** com o objetivo de criar uma solu
 
 A solução realiza a leitura de **temperatura**, **umidade** e **luminosidade** utilizando um ESP32, envia os dados via **MQTT** para o broker público da HiveMQ e apresenta as informações em tempo real por meio de um dashboard desenvolvido no **Node-RED**.
 
+<img width="2515" height="949" alt="image" src="https://github.com/user-attachments/assets/6ec25695-b93d-4c6c-ade9-6f58472d8086" />
+
 ---
 
 ## 📌 Visão geral
