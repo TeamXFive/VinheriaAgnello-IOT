@@ -1,0 +1,686 @@
+[
+    {
+        "id": "bb8144504f4c84c0",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "837830cd012325da",
+        "type": "mqtt-broker",
+        "name": "HiveMQ Public",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "00cf5a22c80484cd",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "d3d2cee8938c381d",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#fcfcfd",
+            "primary": "#0d74ce",
+            "bgPage": "#f9f9fb",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d9d9e0"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "66c595b70aaa084f",
+        "type": "ui-page",
+        "name": "3ESOA 2026 - XFive - Fase 5 - Vinheria Agnello",
+        "ui": "00cf5a22c80484cd",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "d3d2cee8938c381d",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "4f8e961a6d6e2a90",
+        "type": "ui-group",
+        "name": "Sensores",
+        "page": "66c595b70aaa084f",
+        "width": "30",
+        "height": "20",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "9b25fd36fe976cc1",
+        "type": "ui-group",
+        "name": "Analise Geral",
+        "page": "66c595b70aaa084f",
+        "width": "12",
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "54972e81abb5bf49",
+        "type": "mqtt in",
+        "z": "bb8144504f4c84c0",
+        "name": "",
+        "topic": "Fiap/iot/3ESOA-2026/xfive/todos",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "837830cd012325da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 370,
+        "y": 580,
+        "wires": [
+            [
+                "caf8e4a3acb10c9b"
+            ]
+        ]
+    },
+    {
+        "id": "caf8e4a3acb10c9b",
+        "type": "debug",
+        "z": "bb8144504f4c84c0",
+        "name": "Debug Topico geral",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "7607fa4e4cb898eb",
+        "type": "function",
+        "z": "bb8144504f4c84c0",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload.temperatura;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 800,
+        "wires": [
+            [
+                "1f99638529862ac2",
+                "73789e0cf93b08df"
+            ]
+        ]
+    },
+    {
+        "id": "1f99638529862ac2",
+        "type": "ui-gauge",
+        "z": "bb8144504f4c84c0",
+        "name": "Temperatura",
+        "group": "4f8e961a6d6e2a90",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "4",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Temperatura",
+        "icon": "",
+        "prefix": "",
+        "suffix": "ºC",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "6",
+                "color": "#eaab53",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "10",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "14",
+                "color": "#04ff00",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "15",
+                "color": "#eaba53",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "18",
+                "color": "#eaab53",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "20",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 630,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "73789e0cf93b08df",
+        "type": "debug",
+        "z": "bb8144504f4c84c0",
+        "name": "Debug Temperatura",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "5075bcf8309d2319",
+        "type": "function",
+        "z": "bb8144504f4c84c0",
+        "name": "function 2",
+        "func": "msg.payload = msg.payload.umidade;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 920,
+        "wires": [
+            [
+                "608e507cba20000d",
+                "bfcd5683b943e43e"
+            ]
+        ]
+    },
+    {
+        "id": "608e507cba20000d",
+        "type": "ui-gauge",
+        "z": "bb8144504f4c84c0",
+        "name": "Umidade",
+        "group": "4f8e961a6d6e2a90",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "4",
+        "gtype": "gauge-tank",
+        "gstyle": "needle",
+        "title": "Umidade",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Umidade",
+        "icon": "",
+        "prefix": "",
+        "suffix": "%",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#a8f5ff",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "15",
+                "color": "#55dbec",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "35",
+                "color": "#53b4fd",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "50",
+                "color": "#2397d1",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 620,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bfcd5683b943e43e",
+        "type": "debug",
+        "z": "bb8144504f4c84c0",
+        "name": "Debug Umidade",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "426d87c847fe504d",
+        "type": "function",
+        "z": "bb8144504f4c84c0",
+        "name": "function 3",
+        "func": "msg.payload = msg.payload.luminosidade;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1040,
+        "wires": [
+            [
+                "e9d3ecda1e1f3806",
+                "62c9f2843c827359"
+            ]
+        ]
+    },
+    {
+        "id": "e9d3ecda1e1f3806",
+        "type": "debug",
+        "z": "bb8144504f4c84c0",
+        "name": "Debug Luminosidade",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "1f9c8920ca572184",
+        "type": "mqtt in",
+        "z": "bb8144504f4c84c0",
+        "name": "",
+        "topic": "Fiap/iot/3ESOA-2026/xfive/temperatura",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "837830cd012325da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 800,
+        "wires": [
+            [
+                "7607fa4e4cb898eb",
+                "03d6a5e6608632e5"
+            ]
+        ]
+    },
+    {
+        "id": "09a9e6cf124be49d",
+        "type": "mqtt in",
+        "z": "bb8144504f4c84c0",
+        "name": "",
+        "topic": "Fiap/iot/3ESOA-2026/xfive/umidade",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "837830cd012325da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 920,
+        "wires": [
+            [
+                "5075bcf8309d2319",
+                "03d6a5e6608632e5"
+            ]
+        ]
+    },
+    {
+        "id": "e1c59f6204937ec2",
+        "type": "mqtt in",
+        "z": "bb8144504f4c84c0",
+        "name": "",
+        "topic": "Fiap/iot/3ESOA-2026/xfive/luminosidade",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "837830cd012325da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 1040,
+        "wires": [
+            [
+                "426d87c847fe504d",
+                "03d6a5e6608632e5"
+            ]
+        ]
+    },
+    {
+        "id": "62c9f2843c827359",
+        "type": "ui-gauge",
+        "z": "bb8144504f4c84c0",
+        "name": "Luminosidade",
+        "group": "4f8e961a6d6e2a90",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "5",
+        "height": "5",
+        "gtype": "gauge-34",
+        "gstyle": "needle",
+        "title": "Luminosidade",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Luminosidade",
+        "icon": "",
+        "prefix": "",
+        "suffix": "%",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#0cc02a",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "10",
+                "color": "#0cc02a",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "20",
+                "color": "#4d4d4d",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "30",
+                "color": "#696969",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "40",
+                "color": "#828282",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "50",
+                "color": "#858585",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#bababa",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "70",
+                "color": "#d6d6d6",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#dbdbdb",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "90",
+                "color": "#ffffff",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 640,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "03d6a5e6608632e5",
+        "type": "function",
+        "z": "bb8144504f4c84c0",
+        "name": "function 4",
+        "func": "// msg.payload = Number(msg.payload);\n\nif (msg.topic.endsWith(\"/temperatura\")) { \n    msg.payload = msg.payload.temperatura;   \n    msg.label = \"Temperatura\";\n}\n\nif (msg.topic.endsWith(\"/umidade\")) {  \n    msg.payload = msg.payload.umidade;  \n    msg.label = \"Umidade\";\n}\n\nif (msg.topic.endsWith(\"/luminosidade\")) { \n    msg.payload = msg.payload.luminosidade;   \n    msg.label = \"Luminosidade\";\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1220,
+        "wires": [
+            [
+                "a222f30c03bb6810"
+            ]
+        ]
+    },
+    {
+        "id": "a222f30c03bb6810",
+        "type": "ui-chart",
+        "z": "bb8144504f4c84c0",
+        "group": "9b25fd36fe976cc1",
+        "name": "",
+        "label": "Grafico geral",
+        "order": 1,
+        "chartType": "line",
+        "category": "label",
+        "categoryType": "msg",
+        "xAxisLabel": "Tempo",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "0",
+        "ymax": "100",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "12",
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 630,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b1db8fa25c3a9d2e",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.31.0"
+        }
+    }
+]
